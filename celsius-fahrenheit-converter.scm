@@ -14,3 +14,9 @@
     (constant 32 y)
     'ok))
 
+(define C (make-connector))
+(define F (make-connector))
+
+(probe "Celsius temp" C)
+(probe "Fahrenheit temp" F)
+

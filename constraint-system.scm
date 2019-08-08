@@ -116,6 +116,11 @@
 	(constraints '()))
     (define (set-my-value newval setter)
       (cond ((not (has-value? me))
+	     (display "setting value to ")
+	     (display newval)
+	     (newline)
+	     (display "Setter is ")
+	     (display setter)
 	     (set! value newval)
 	     (set! informant setter)
 	     (for-each-except setter inform-about-value constraints))
@@ -133,6 +138,7 @@
 		   inform-about-no-value
 		   constraints))
 	  'ignored))
+
     (define (connect new-constraint)
       (if (not (memq new-constraint constraints))
 	  (set! constraints (cons new-constraint constraints)))
@@ -164,7 +170,6 @@
 		(loop (cdr items)))))
   (loop _list))
 
-
 (define (has-value? connector)
   (connector 'has-value?))
 (define (get-value connector)
@@ -177,5 +182,4 @@
   ((connector 'forget) retractor))
 (define (connect connector new-constraint)
   ((connector 'connect) new-constraint))
-
 
