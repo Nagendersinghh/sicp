@@ -107,7 +107,6 @@
   me)
 
 (define (multiplier m1 m2 product)
-
   (define (process-new-value)
     (cond ((or (and (has-value? m1)
 		    (= (get-value m1) 0))
@@ -132,6 +131,12 @@
 	     m1
 	     (/ (get-value product) (get-value m2))
 	     me))))
+
+  (define (process-forget-value)
+    (forget-value! m1 me)
+    (forget-value! m2 me)
+    (forget-value! product me)
+    (process-new-value))
 
   (define (me request)
     (cond ((eq? request 'I-have-a-value) (process-new-value))
