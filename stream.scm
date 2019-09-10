@@ -58,5 +58,5 @@
   (stream-map * s1 s2))
 
 (define (scale s factor)
-  (stream-map (lambda (item) (* 2 item)) s))
+  (stream-map (lambda (item) (* factor item)) s))
 
