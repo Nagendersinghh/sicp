@@ -26,6 +26,20 @@
 (define (display-stream s)
   (stream-for-each display-line s))
 
+(define (display-stream-upto s count)
+  (cond ((or (stream-null? s)
+	     (zero? count))
+	 'done)
+	((> count 0)
+	 (begin
+	   (display-line (stream-car s))
+	   (display-stream-upto
+	     (stream-cdr s)
+	     (- count 1))))
+	(else (display-stream-upto
+		(stream-cdr s)
+		(- count 1)))))
+
 (define (display-line x)
   (newline)
   (display x))
